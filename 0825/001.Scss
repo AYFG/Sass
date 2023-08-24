@@ -1,0 +1,50 @@
+// 적힌대로 mixin 만들기
+// // input: box(100, r) // r은 사각형, rect입니다.
+// // output:
+// .one {
+//   width: 100px;
+//   height: 100px;
+//   background-color: blue;
+//   border: 1px solid black;
+// }
+// // input: box(100, c) // c는 원, circle입니다.
+// // output:
+// .two {
+//   width: 100px;
+//   height: 100px;
+//   background-color: blue;
+//   border: 1px solid black;
+//   border-radius: 50%;
+// }
+@mixin box($size, $form) {
+  width: #{$size}px;
+  height: #{$size}px;
+  background-color: blue;
+  border-radius: black;
+  @if ($form==c) {
+    //if ,  else if 앞에 골뱅이 잊지말자
+    border-radius: 50%;
+  }
+}
+.rect {
+  @include box(100, r);
+}
+.circle {
+  @include box(100, c);
+}
+///////////////////////////////////////////
+@mixin box($size, $shape, $color, $borderWidth, $borderColor) {
+  width: $size;
+  height: $size;
+  background-color: $color;
+  border: $borderWidth solid $borderColor;
+  @if ($shape == c) {
+    border-radius: 50%;
+  }
+}
+.rect2 {
+  @include box(100px, r, red, 1px, royalblue);
+}
+.circle2 {
+  @include box(100px, c, red, 1px, royalblue);
+}
